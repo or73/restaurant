@@ -1,7 +1,7 @@
 """
 Flask application with DB & Links
 """
-from flask import Flask
+from flask import Flask, render_template
 app = Flask(__name__)
 
 from sqlalchemy import create_engine
@@ -20,15 +20,8 @@ session = DBSession()
 def restaurantMenu(restaurant_id):
     restaurant = session.query(Restaurant).filter_by(id=restaurant_id).one()
     items = session.query(MenuItem).filter_by(restaurant_id=restaurant_id)
-    message = ''
-    for i in items:
-        message += i.name
-        message += '<br/>'
-        message += i.price
-        message += '<br/>'
-        message += i.description
-        message += '<br/><br/>'
-    return message
+    return render_template('menu.html', restaurant=restaurant, items=items)
+
 
 @app.route('/restaurants/<int:restaurant_id>/edit/')
 def restaurantEdit(restaurant_id):
@@ -46,11 +39,11 @@ def newMenuItem(restaurant_id):
 def editMenuItem(restaurant_id, menu_id):
     return 'Page to edit a new menu item.  Task 2 completed'
 
+
 # Task3: Create a route for deleteMenuItem
 @app.route('/restaurants/<int:restaurant_id>/<int:menu_id>/delete/')
 def deleteMenuItem(restaurant_id, menu_id):
     return 'Page to delete a menu item.  Task 3 completed'
-
 
 
 if __name__ == '__main__':
