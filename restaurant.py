@@ -1,5 +1,5 @@
 """
-Flask application with DB
+Flask application with DB & Links
 """
 
 
@@ -27,6 +27,10 @@ def HelloWorld():
     for i in items:
         message += i.name
         message += '<br/>'
+        message += i.price
+        message += '<br/>'
+        message += i.description
+        message += '<br/><br/>'
     return message
 
 
