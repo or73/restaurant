@@ -30,6 +30,28 @@ def restaurantMenu(restaurant_id):
         message += '<br/><br/>'
     return message
 
+@app.route('/restaurants/<int:restaurant_id>/edit/')
+def restaurantEdit(restaurant_id):
+    message = ''
+
+
+# Task1: Create route for newMenuItem
+@app.route('/restaurants/<int:restaurant_id>/new/')
+def newMenuItem(restaurant_id):
+    return 'Page to create a new menu item.  Task 1 completed'
+
+
+# Task2: Create route for editMenuItem
+@app.route('/restaurants/<int:restaurant_id>/<int:menu_id>/edit/')
+def editMenuItem(restaurant_id, menu_id):
+    return 'Page to edit a new menu item.  Task 2 completed'
+
+# Task3: Create a route for deleteMenuItem
+@app.route('/restaurants/<int:restaurant_id>/<int:menu_id>/delete/')
+def deleteMenuItem(restaurant_id, menu_id):
+    return 'Page to delete a menu item.  Task 3 completed'
+
+
 
 if __name__ == '__main__':
     app.debug = True
